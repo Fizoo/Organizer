@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 import {ITask} from "./model";
 import * as moment from "moment";
 
@@ -19,8 +19,9 @@ export class DataService {
     return this.http.post<CreateResponse>(`${DataService.url}/${task.date}.json`,task)
       .pipe(
         map(res=>{
-          return {...task,id:res.name}
-        })
+          return {...task,id:res.name,}
+        }),
+        tap(el=>console.log('this.el',el))
       )
   }
 

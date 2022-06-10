@@ -1,16 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {DateService} from "../shared/date.service";
 import * as moment from "moment";
-import {DataService} from "../shared/data.service";
-import {filter, map} from "rxjs";
 
 interface Day {
   value: moment.Moment
   active: boolean
   disabled: boolean
   selected: boolean
-  countEvent:any
-
 }
 
 interface Week {
@@ -27,10 +23,8 @@ export class Calendar2Component implements OnInit {
 
   date!: moment.Moment
   calendar: Week[];
-  countInDay = 0
 
-  constructor(private dateService: DateService,
-              private dataService:DataService) {
+  constructor(private dateService: DateService) {
   }
 
   ngOnInit() {
@@ -57,13 +51,9 @@ export class Calendar2Component implements OnInit {
             const active = moment().isSame(value, 'date')
             const disabled = !now.isSame(value, 'month')
             const selected = now.isSame(value, 'date')
-            let countEvent=this.dataService.load(value).pipe(
-              map((el)=>el.length),
-              filter(el=>el!==0),
-            ).subscribe(res=>res)
 
             return {
-              value, active, disabled, selected,countEvent
+              value, active, disabled, selected
             }
           })
       })

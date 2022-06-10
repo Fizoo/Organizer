@@ -26,6 +26,7 @@ export class OrganizerComponent implements OnInit {
        switchMap(value=>this.dataService.load(value)))
        .subscribe((task:any)=> {
           this.tasks=task
+
         this.dateService.countEvent$.next(task.length)
        })
 
@@ -33,6 +34,8 @@ export class OrganizerComponent implements OnInit {
     this.form=new FormGroup({
       title:new FormControl('',Validators.required)
     })
+
+
   }
 
   submit() {
