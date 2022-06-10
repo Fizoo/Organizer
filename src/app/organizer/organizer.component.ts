@@ -17,6 +17,7 @@ export class OrganizerComponent implements OnInit {
    tasks:ITask[]=[]
 
 
+
   constructor(public dateService:DateService,
               private dataService:DataService) { }
 
@@ -25,6 +26,7 @@ export class OrganizerComponent implements OnInit {
        switchMap(value=>this.dataService.load(value)))
        .subscribe((task:any)=> {
           this.tasks=task
+        this.dateService.countEvent$.next(task.length)
        })
 
     this.dateService.date$.subscribe(res=> this.date = res)
@@ -42,8 +44,7 @@ export class OrganizerComponent implements OnInit {
     this.dataService.create(task).subscribe(task=>{
       this.tasks.push(task)
       this.form.reset()
-    },(err)=>console.error(err),
-      ()=>console.log('completed')
+    },(err)=>console.error(err)
     )
 
   }
@@ -55,4 +56,11 @@ export class OrganizerComponent implements OnInit {
       err=>console.error(err)
     )
   }
+
+
+  get title() {
+    return this.form.controls['title']
+  }
+
+
 }

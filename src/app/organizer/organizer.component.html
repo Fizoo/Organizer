@@ -1,34 +1,36 @@
-<section>
-  <header>
-    Organizer: <strong>{{date| moment:'DD.MM.YY' }}</strong>
-  </header>
-  <hr>
+<div class="container">
+  <div class="section">
+    <header>
+      <strong>{{date| moment:'DD.MM.YY' }}</strong>
+    </header>
 
-  <main>
-    <ul *ngIf="tasks.length;else noTasks" >
-      <li class="task" *ngFor="let task of tasks; let i=index">
+    <main>
+      <ul *ngIf="tasks.length;else noTasks">
+        <li class="task" *ngFor="let task of tasks; let i=index">
         <span>
-          <strong>{{i}}</strong>
+          <small class="text-secondary mr-4">{{i+1}}</small>
           {{task.title}}
         </span>
-        <button (click)="removeTask(task)" class="btn btn-danger">Remove</button>
-      </li>
-    </ul>
-    <ng-template #noTasks>
-      <p class="text-center">No yet...</p>
-    </ng-template>
-  </main>
+          <button (click)="removeTask(task)" class="btn btn-danger  btn-sm">Remove</button>
+        </li>
+      </ul>
+      <ng-template #noTasks>
+        <p class="text-center">No yet...</p>
+      </ng-template>
+    </main>
 
-  <footer>
-    <form (ngSubmit)="submit()" [formGroup]="form">
-     <input type="text" formControlName="title">
+    <footer>
+      <form (ngSubmit)="submit()" [formGroup]="form">
+        <input type="text" formControlName="title" class="form-control" placeholder="Add new event" >
 
-      <button
-        class="btn btn-danger btn-block"
-        type="submit"
-        [disabled]="form.invalid">
-        Add
-      </button>
-    </form>
-  </footer>
-</section>
+        <button
+          [style.display]="title.value?'block':'none'"
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="form.invalid">
+          Add
+        </button>
+      </form>
+    </footer>
+  </div>
+</div>

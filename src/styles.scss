@@ -5,21 +5,25 @@
 
 :root {
   --primary-color: #dc3545;
-  --dark-color: #333333;
+  --dark-color: #c7c2c2;
   --light-color: #f4f4f4;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+
+/*
+
+
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background: #fff;
+  //background: #fff;
   color: #333;
 }
 
@@ -94,3 +98,4 @@ table th {
 .text-center {
   text-align: center;
 }
+*/

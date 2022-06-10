@@ -1,0 +1,56 @@
+
+  <div class="box">
+    <div class="cont ">
+      <div class="selector">
+        <button type="button" class="btn ">
+          <i (click)="go(-1)"
+             class="bi bi-caret-left-fill"></i>
+        </button>
+
+        <span>
+            {{date | moment }}
+        </span>
+
+        <button type="button" class="btn">
+          <i (click)="go(1)"
+             class="bi bi-caret-right-fill">
+          </i>
+        </button>
+
+      </div>
+
+      <table>
+        <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wen</th>
+          <th>Thy</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let week of calendar">
+          <td
+            *ngFor="let day of week.days"
+            [class.disabled]="day.disabled"
+            (click)="select(day.value)"
+            [class.active]="day.active"
+          >
+        <span
+          [class.selected]="day.selected"
+          [class.active]="day.active"
+        >
+          <!--{{day.countEvent|json }}-->
+          {{day.value | moment: 'DD'}}
+        </span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>

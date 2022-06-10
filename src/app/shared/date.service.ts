@@ -8,6 +8,7 @@ import * as moment from "moment";
 export class DateService {
 
   public date$:BehaviorSubject<moment.Moment> =new BehaviorSubject(moment())
+  public countEvent$:BehaviorSubject<number> =new BehaviorSubject(0)
 
   constructor() { }
 
